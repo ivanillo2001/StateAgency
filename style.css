@@ -33,6 +33,7 @@ a:hover{
     font-weight: bold;
 }
 .opciones{
+    margin-top: 60px;
     justify-content: space-between;
     display: flex;
 }
