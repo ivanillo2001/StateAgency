@@ -56,10 +56,12 @@ $conn = (new Connection())->getPdo();
         }
     }
     function showOptions(){
-        echo "<a href='listNews.php'>List of News</a><br>";
-        echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
-        echo "<a href='deleteNew.php'>Delete News</a><br>";
-        echo "<a href='logOut.php'>Log Out</a>";
+        echo "<section class='opciones'>";
+        echo "<a href='listNews.php'>List of News</a>";
+        echo "<a href='insertNew.php'>Insert a piece of news</a>";
+        echo "<a href='deleteNew.php'>Delete News</a>";
+        echo "<a href='logOut.php'>Log Out";
+        echo "</section>";
     }
 ?>
 

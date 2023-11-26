@@ -30,6 +30,9 @@ a{
     color: black;
 }
 a:hover{
-    font-size: 20px;
     font-weight: bold;
+}
+.opciones{
+    justify-content: space-between;
+    display: flex;
 }
