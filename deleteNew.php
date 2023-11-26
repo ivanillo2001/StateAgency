@@ -12,6 +12,7 @@
 <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
     <?php
     require_once "Connection.php";
+    session_start();
     $conn = (new Connection())->getPdo();
     try {
         $stmt = $conn->prepare("select id,titulo, texto,categoria,fecha,imagen from noticias");
@@ -47,6 +48,7 @@
     ?>
 
 </form>
+<a href="logIn.php">Back home</a>
 
 <?php
     if (isset($_REQUEST['delete'])){

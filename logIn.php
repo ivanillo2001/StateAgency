@@ -1,5 +1,6 @@
 <?php
 require_once "Connection.php";
+session_start();
 //creamos conexion bbdd
 $conn = (new Connection())->getPdo();
 ?>

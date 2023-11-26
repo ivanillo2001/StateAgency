@@ -11,6 +11,7 @@
 <body>
 <?php
 require_once "Connection.php";
+session_start();
 $conn = (new Connection())->getPdo();
 try {
     $stmt = $conn->prepare("select titulo, texto,categoria,fecha,imagen from noticias");
@@ -40,5 +41,6 @@ try {
     die("Connection to database failed!");
 }
 ?>
+<a href="logIn.php">Back Home</a>
 </body>
 </html>
