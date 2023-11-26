@@ -1,0 +1,35 @@
+body{
+    background-color: beige;
+}
+td{
+    width: 250px;
+    height: 45px;
+    border: solid #9d9dfa 1px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+th{
+    width: 250px;
+    height: 30px;
+    border: solid #9d9dfa 1px;
+    text-align: center;
+    background-color: blue;
+    color: white;
+}
+input,textarea,select{
+    margin-left: 100px;
+}
+fieldset{
+    border: solid 3px mediumpurple;
+    background-color: cadetblue;
+    border-radius: 10px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    font-size: 20px;
+    font-weight: bold;
+}
