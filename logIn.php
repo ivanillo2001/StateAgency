@@ -28,10 +28,7 @@ $conn = (new Connection())->getPdo();
 </nav>
 <?php
     if (isset($_SESSION['user'])){
-            echo "<a href='listNews.php'>List of News</a><br>";
-            echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
-            echo "<a href='deleteNew.php'>Delete News</a><br>";
-            echo "<a href='logOut.php'>Log Out</a>";
+           showOptions();
     }else {
         if (isset($_REQUEST['submit'])) {
             $user = $_REQUEST['user'];
@@ -48,9 +45,7 @@ $conn = (new Connection())->getPdo();
                 } else {
                     $_SESSION['user'] = $user;
                     if (isset($_SESSION['user'])) {
-                        echo "<a href='listNews.php'>List of News</a><br>";
-                        echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
-                        echo "<a href='deleteNew.php'>Delete News</a><br>";
+                        showOptions();
                     }
                 }
             } catch (PDOException $exception) {
@@ -59,6 +54,12 @@ $conn = (new Connection())->getPdo();
             }
 
         }
+    }
+    function showOptions(){
+        echo "<a href='listNews.php'>List of News</a><br>";
+        echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
+        echo "<a href='deleteNew.php'>Delete News</a><br>";
+        echo "<a href='logOut.php'>Log Out</a>";
     }
 ?>
 
