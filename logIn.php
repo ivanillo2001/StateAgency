@@ -27,11 +27,11 @@ $conn = (new Connection())->getPdo();
     </form>
 </nav>
 <?php
-
     if (isset($_SESSION['user'])){
             echo "<a href='listNews.php'>List of News</a><br>";
             echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
             echo "<a href='deleteNew.php'>Delete News</a><br>";
+            echo "<a href='logOut.php'>Log Out</a>";
     }else {
         if (isset($_REQUEST['submit'])) {
             $user = $_REQUEST['user'];
