@@ -24,34 +24,43 @@ $conn = (new Connection())->getPdo();
             <input name="password" type="password"><br>
             <input type="submit" value="LogIn" name="submit">
         </fieldset>
-
     </form>
 </nav>
 <?php
 
-    if (isset($_REQUEST['submit'])){
-        $user = $_REQUEST['user'];
-        $pw = $_REQUEST['password'];
-        try {
-            $stmt = $conn->prepare("Select usuario, clave from usuarios where usuario =:user and clave =:clave");
-            $stmt->bindParam(':user',$user);
-            $stmt->bindParam(':clave',$pw);
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-            $count = $stmt->rowCount();
-            if ($count==0){
-                echo "<script>alert('Usuario equivocado')</script>";
-            }else{
-                echo "<a href='listNews.php'>List of News</a><br>";
-                echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
-                echo "<a href='deleteNew.php'>Delete News</a><br>";
+    if (isset($_SESSION['user'])){
+            echo "<a href='listNews.php'>List of News</a><br>";
+            echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
+            echo "<a href='deleteNew.php'>Delete News</a><br>";
+    }else {
+        if (isset($_REQUEST['submit'])) {
+            $user = $_REQUEST['user'];
+            $pw = $_REQUEST['password'];
+            try {
+                $stmt = $conn->prepare("Select usuario, clave from usuarios where usuario =:user and clave =:clave");
+                $stmt->bindParam(':user', $user);
+                $stmt->bindParam(':clave', $pw);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                $count = $stmt->rowCount();
+                if ($count == 0) {
+                    echo "<script>alert('Usuario equivocado')</script>";
+                } else {
+                    $_SESSION['user'] = $user;
+                    if (isset($_SESSION['user'])) {
+                        echo "<a href='listNews.php'>List of News</a><br>";
+                        echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
+                        echo "<a href='deleteNew.php'>Delete News</a><br>";
+                    }
+                }
+            } catch (PDOException $exception) {
+                echo $exception->getMessage();
+                die("Connection to database failed!");
             }
-        }catch(PDOException $exception){
-            echo $exception ->getMessage();
-            die("Connection to database failed!");
-        }
 
+        }
     }
 ?>
+
 </body>
 </html>
