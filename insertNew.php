@@ -17,7 +17,6 @@ $conn = (new Connection())->getPdo();
 <body>
 <section id="Form">
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-        <fieldset>
             <label>Title</label><input type="text" name="title"><br><br>
             <label>Text</label><textarea name="textArea"></textarea><br><br>
             <label>Category</label>
@@ -40,7 +39,6 @@ $conn = (new Connection())->getPdo();
             </select><br><br>
             <label>Image</label><input type="file" value="Add File" size="44" name="image"><br>
             <input type="submit" value="Add piece of new" name="submit">
-        </fieldset>
     </form>
     <a href="logIn.php">Come Back Home</a>
 </section>

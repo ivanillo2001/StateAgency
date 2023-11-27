@@ -20,19 +20,23 @@
         $result = $stmt->fetchAll();
         echo "<table>";
         echo "<tr>";
-        echo "<th>Titulo</th>";
-        echo "<th>Texto</th>";
-        echo "<th>Categoria</th>";
-        echo "<th>Fecha</th>";
-        echo "<th>Imagen</th>";
-        echo "<th>Borrar</th>";
+        echo "<th class='columna'>Titulo</th>";
+        echo "<th class='columna'>Texto</th>";
+        echo "<th class='columna'>Categoria</th>";
+        echo "<th class='columna'>Fecha</th>";
+        echo "<th class='columna'>Imagen</th>";
+        echo "<th class='columna'>Borrar</th>";
         echo "</tr>";
         foreach ($result as $noticia) {
             echo "<tr>";
             // Itera sobre cada elemento del array $noticia
             foreach ($noticia as $clave => $valor) {//la clave es el nombre de la columna y el valor es el contenido
                 if ($clave!=='id'){//por clave que no sea el id se muestra el valor. Lo hago porque si no lo hiciera se mostraría también id
-                    echo "<td>$valor</td>";
+                    if ($clave=='imagen'){
+                        echo "<td><a href='imagenesCasas/$valor'><img src='imagenesCasas/camara.jpg' width='50px' height='50px'></a></td>";
+                    }else {
+                        echo "<td>$valor</td>";
+                    }
                 }
             }
             echo "<td> <input type='checkbox' name='noticia_a_borrar[]' value='{$noticia['id']}'></td>"; // Crea un checkbox con el id de la noticia como value
@@ -57,6 +61,7 @@
             foreach ($_REQUEST['noticia_a_borrar'] as $id){
                 $del->bindParam(":id",$id,PDO::PARAM_INT);
                 $del->execute();
+                header("Location: deleteNew.php");
             }
         }catch (PDOException $exception) {
             echo $exception->getMessage();

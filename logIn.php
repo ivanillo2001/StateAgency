@@ -15,24 +15,24 @@ $conn = (new Connection())->getPdo();
     <title>LogIn</title>
 </head>
 <body>
-<nav>
+<section class="formulario">
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-        <fieldset>
             <label>User:</label>
             <input name="user" type="text"><br>
             <label>Password:</label>
             <input name="password" type="password"><br>
             <input type="submit" value="LogIn" name="submit">
-        </fieldset>
     </form>
-</nav>
+</section>
+
+
 <?php
 if (isset($_SESSION['user'])) {
     showOptions();
 } else {
     if (isset($_REQUEST['submit'])) {
         $user = $_REQUEST['user'];
-        $pw = $_REQUEST['password'];
+        $pw = md5($_REQUEST['password']);
         try {
             $stmt = $conn->prepare("Select usuario, clave from usuarios where usuario =:user and clave =:clave");
             $stmt->bindParam(':user', $user);
@@ -58,11 +58,11 @@ if (isset($_SESSION['user'])) {
 function showOptions()
 {
     ?>
-    <table>
-        <th><a href='listNews.php' >List of News</a></th>
-        <th><a href='insertNew.php'>Insert a piece of news</a></th>
-        <th><a href='deleteNew.php'>Delete News</a></th>
-        <th><a href='logOut.php'>Log Out</a></th>
+    <table class="opciones">
+        <th><a href='listNews.php' class="opcion">List of News</a></th>
+        <th><a href='insertNew.php'class="opcion">Insert a piece of news</a></th>
+        <th><a href='deleteNew.php'class="opcion">Delete News</a></th>
+        <th><a href='logOut.php'   class="opcion">Log Out</a></th>
     </table>
     <?php
 }

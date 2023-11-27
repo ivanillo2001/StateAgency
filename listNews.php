@@ -18,19 +18,23 @@ try {
     $stmt->execute();
     $result = $stmt->fetchAll();
     echo "<table>";
-    echo "<tr>";
-    echo "<th>Titulo</th>";
-    echo "<th>Texto</th>";
-    echo "<th>Categoria</th>";
-    echo "<th>Fecha</th>";
-    echo "<th>Imagen</th>";
+    echo "<tr class='columna'>";
+    echo "<th class='columna'>Titulo</th>";
+    echo "<th class='columna'>Texto</th>";
+    echo "<th class='columna'>Categoria</th>";
+    echo "<th class='columna'>Fecha</th>";
+    echo "<th class='columna'>Imagen</th>";
 
     echo "</tr>";
     foreach ($result as $noticia){
         echo "<tr>";
         // Itera sobre cada elemento del array $noticia
         foreach ($noticia as $clave => $valor) {
-            echo "<td>$valor</td>";
+            if ($clave=='imagen'){
+                echo "<td><a href='imagenesCasas/$valor'><img src='imagenesCasas/camara.jpg' width='50px' height='50px'></a></td>";
+            }else {
+                echo "<td>$valor</td>";
+            }
             //aquí la clave es el nombre de la columna y el valor es el contenido de cada una
         }
         echo "</tr>";

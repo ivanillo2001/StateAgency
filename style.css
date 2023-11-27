@@ -1,5 +1,41 @@
 body{
     background-color: beige;
+    text-align: center;
+}
+.formulario{
+    margin-top: 50px;
+    margin-left: 15%;
+    width: 70%;
+    height: 150px;
+    background-color: #a5c3fa;
+    border-radius: 10px;
+}
+input{
+    margin-top: 15px;
+}
+.opciones{
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 15%;
+    width: 70%;
+    height: 45px;
+    background-color:whitesmoke;
+}
+.opcion{
+    border-radius: 10px;
+}
+.opcion:hover{
+    font-weight: bolder;
+    font-size: 20px;
+}
+.columna{
+        width: 250px;
+        height: 30px;
+        border: solid #9d9dfa 1px;
+        text-align: center;
+        background-color: #6a6af3;
+        color: white;
+        margin-left: 45px;
 }
 td{
     width: 250px;
@@ -8,27 +44,27 @@ td{
     text-align: center;
     border-radius: 5px;
     background-color: whitesmoke;
+
 }
-th{
-    width: 250px;
-    height: 30px;
-    border: solid #9d9dfa 1px;
-    text-align: center;
-    background-color: #6a6af3;
-    color: white;
-    margin-left: 45px;
+#Form{
+    margin-left: 15%;
+    width: 70%;
+    height: auto;
+    background-color: whitesmoke;
+    margin-top: 50px;
 }
-input,textarea,select{
-    margin-left: 100px;
-}
-fieldset{
-    border: solid 3px mediumpurple;
-    background-color: #4f9ba8;
-    border-radius: 10px;
-}
+/*th{*/
+/*    width: 250px;*/
+/*    height: 30px;*/
+/*    border: solid #9d9dfa 1px;*/
+/*    text-align: center;*/
+/*    background-color: #6a6af3;*/
+/*    color: white;*/
+/*    margin-left: 45px;*/
+/*}*/
 a{
     text-decoration: none;
-    color: white;
+    color: black;
 }
 a:hover{
     font-weight: bold;
