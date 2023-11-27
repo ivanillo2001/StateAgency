@@ -14,26 +14,27 @@ th{
     height: 30px;
     border: solid #9d9dfa 1px;
     text-align: center;
-    background-color: blue;
+    background-color: #6a6af3;
     color: white;
+    margin-left: 45px;
 }
 input,textarea,select{
     margin-left: 100px;
 }
 fieldset{
     border: solid 3px mediumpurple;
-    background-color: cadetblue;
+    background-color: #4f9ba8;
     border-radius: 10px;
 }
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 a:hover{
     font-weight: bold;
 }
-.opciones{
-    margin-top: 60px;
+
+table{
+    border: solid 2px black;
     justify-content: space-between;
-    display: flex;
 }

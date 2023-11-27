@@ -16,7 +16,7 @@ $conn = (new Connection())->getPdo();
 </head>
 <body>
 <nav>
-    <form action="<?=$_SERVER['PHP_SELF']?>"method="post">
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <fieldset>
             <label>User:</label>
             <input name="user" type="text"><br>
@@ -27,42 +27,45 @@ $conn = (new Connection())->getPdo();
     </form>
 </nav>
 <?php
-    if (isset($_SESSION['user'])){
-           showOptions();
-    }else {
-        if (isset($_REQUEST['submit'])) {
-            $user = $_REQUEST['user'];
-            $pw = $_REQUEST['password'];
-            try {
-                $stmt = $conn->prepare("Select usuario, clave from usuarios where usuario =:user and clave =:clave");
-                $stmt->bindParam(':user', $user);
-                $stmt->bindParam(':clave', $pw);
-                $stmt->execute();
-                $result = $stmt->fetchAll();
-                $count = $stmt->rowCount();
-                if ($count == 0) {
-                    echo "<script>alert('Usuario equivocado')</script>";
-                } else {
-                    $_SESSION['user'] = $user;
-                    if (isset($_SESSION['user'])) {
-                        showOptions();
-                    }
+if (isset($_SESSION['user'])) {
+    showOptions();
+} else {
+    if (isset($_REQUEST['submit'])) {
+        $user = $_REQUEST['user'];
+        $pw = $_REQUEST['password'];
+        try {
+            $stmt = $conn->prepare("Select usuario, clave from usuarios where usuario =:user and clave =:clave");
+            $stmt->bindParam(':user', $user);
+            $stmt->bindParam(':clave', $pw);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            $count = $stmt->rowCount();
+            if ($count == 0) {
+                echo "<script>alert('Usuario equivocado')</script>";
+            } else {
+                $_SESSION['user'] = $user;
+                if (isset($_SESSION['user'])) {
+                    showOptions();
                 }
-            } catch (PDOException $exception) {
-                echo $exception->getMessage();
-                die("Connection to database failed!");
             }
-
+        } catch (PDOException $exception) {
+            echo $exception->getMessage();
+            die("Connection to database failed!");
         }
+
     }
-    function showOptions(){
-        echo "<section class='opciones'>";
-        echo "<a href='listNews.php'>List of News</a><br>";
-        echo "<a href='insertNew.php'>Insert a piece of news</a><br>";
-        echo "<a href='deleteNew.php'>Delete News</a><br>";
-        echo "<a href='logOut.php'>Log Out";
-        echo "</section>";
-    }
+}
+function showOptions()
+{
+    ?>
+    <table>
+        <th><a href='listNews.php' >List of News</a></th>
+        <th><a href='insertNew.php'>Insert a piece of news</a></th>
+        <th><a href='deleteNew.php'>Delete News</a></th>
+        <th><a href='logOut.php'>Log Out</a></th>
+    </table>
+    <?php
+}
 ?>
 
 </body>
