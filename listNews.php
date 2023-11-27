@@ -13,8 +13,17 @@
 require_once "Connection.php";
 session_start();
 $conn = (new Connection())->getPdo();
+// Definir el número de noticias por página
+$noticiasPorPagina = 2;
+// Obtener el número de página actual desde la URL
+$paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 try {
-    $stmt = $conn->prepare("select titulo, texto,categoria,fecha,imagen from noticias");
+    // Calcular el offset para la consulta basado en la página actual
+    $offset = ($paginaActual - 1) * $noticiasPorPagina;
+    //Poner en la consulta el rango
+    $stmt = $conn->prepare("select titulo, texto,categoria,fecha,imagen from noticias LIMIT :offset, :limit");
+    $stmt->bindParam(":offset",$offset);
+    $stmt->bindParam(":limit",$noticiasPorPagina,PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll();
     echo "<table>";
@@ -40,11 +49,23 @@ try {
         echo "</tr>";
     }
     echo "</table>";
+    //Mostrar enlaces de paginacion
+    //con esto obtenemos las filas que hay
+    $stmt= $conn->prepare("Select count(*) as total from noticias");
+    $stmt->execute();
+    //guardamos el total de noticias
+    $totalNoticias = $stmt->fetchColumn();
+    //lo dividimos entre el numero de paginas que debe haber
+    $totalPaginas = ceil($totalNoticias / $noticiasPorPagina);
+    //se hace un for para cada pagina y se genera un indice
+    for ($i = 1; $i <= $totalPaginas; $i++) {
+        echo "<a href='listNews.php?pagina=$i'>$i</a> ";
+    }
 }catch (PDOException $exception){
     echo $exception ->getMessage();
     die("Connection to database failed!");
 }
 ?>
-<a href="logIn.php">Back Home</a>
+<br><a href="logIn.php">Back Home</a>
 </body>
 </html>

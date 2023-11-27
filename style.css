@@ -50,18 +50,10 @@ td{
     margin-left: 15%;
     width: 70%;
     height: auto;
-    background-color: whitesmoke;
+    background-color: #a5c3fa;
     margin-top: 50px;
 }
-/*th{*/
-/*    width: 250px;*/
-/*    height: 30px;*/
-/*    border: solid #9d9dfa 1px;*/
-/*    text-align: center;*/
-/*    background-color: #6a6af3;*/
-/*    color: white;*/
-/*    margin-left: 45px;*/
-/*}*/
+
 a{
     text-decoration: none;
     color: black;
